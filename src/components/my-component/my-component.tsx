@@ -252,10 +252,10 @@ export class MyComponent {
                         <br />
                         <div class="item item-divider">
                           <ion-label>
-                            <h1>
+                            <h2 class="titulo-principal">
                               Promociones que aplica a servicios{" "}
                               {String(y.tipo_serv_nombre).toLowerCase()}
-                            </h1>
+                            </h2>
                             <p> {y.des} </p>
                           </ion-label>
                         </div>
