@@ -252,10 +252,10 @@ export class MyComponent {
                         <br />
                         <div class="item item-divider">
                           <ion-label>
-                            <h2>
-                              Promociones que aplica a{" "}
+                            <h1>
+                              Promociones que aplica a servicios{" "}
                               {String(y.tipo_serv_nombre).toLowerCase()}
-                            </h2>
+                            </h1>
                             <p> {y.des} </p>
                           </ion-label>
                         </div>
@@ -268,9 +268,7 @@ export class MyComponent {
                               </ion-thumbnail>
 
                               <ion-label>
-                                <p>
-                                  Aplica solo para las tarjetas {e.card_nombre}
-                                </p>
+                                <p>Valido para las tarjetas {e.card_nombre}</p>
                                 <p>Vigente hasta {y.vencimiento}</p>
                               </ion-label>
                             </ion-item>
