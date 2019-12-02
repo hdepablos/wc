@@ -279,7 +279,7 @@ export class MyComponent {
                                   <tr>
                                     <td>Cuotas</td>
                                     <td>Interes %</td>
-                                    <td>CFTNA</td>
+                                    <td>CFTNA %</td>
                                   </tr>
                                 </thead>
 
