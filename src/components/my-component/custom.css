@@ -1,10 +1,16 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  /* font-size: 10px !important; */
+}
 .fil-bancos {
   object-fit: contain;
 }
 
 .selected {
   --ion-background-color: #fff;
+  /* border-top: 2px solid rgb(177, 172, 172); */
   border-right: 6px solid rgb(177, 172, 172);
+  /* border-bottom: 1px solid rgb(177, 172, 172); */
 }
 
 .sep-tip-servicio {
@@ -15,8 +21,9 @@
 }
 
 .nota-legal {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-size: 10px;
+  color: #666666;
   /* border: 1px solid #c7c3c7;
   box-sizing: content-box;
   margin-top: 8px;
@@ -49,7 +56,7 @@
   color: #2a2a2a;
   background: #fafafa;
   /* background-image: linear-gradient(top, #fff, #eaeaea, #fff); */
-  background-image: linear-gradient(to top, #fff, #eaeaea, #fff);
+  /* background-image: linear-gradient(to top, #fff, #eaeaea, #fff); */
 }
 
 .features-table td {
@@ -84,7 +91,7 @@
   /* background: #dad9c5;
   background: rgba(206, 203, 63, 0.15);
   border-right: 1px solid white; */
-  font-size: 20px;
+  /* font-size: 20px; */
   font-weight: bolder;
 }
 
@@ -102,4 +109,11 @@
 
 .tituloprincipal {
   font-weight: 500 !important;
+}
+
+.titulo-principal {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #666;
+  color: #fff;
+  padding: 3px 5px;
 }
