@@ -65,6 +65,8 @@ export class MyComponent {
   getItemsServicios(rowP) {
     const rowPServicios = this.getUnicos(rowP, "tipo_serv_id").map(item => {
       const {
+        proveedor,
+        img,
         tipo_serv_id,
         tipo_serv_nombre,
         alta,
@@ -72,7 +74,10 @@ export class MyComponent {
         nota_legal,
         des
       } = item;
+
       return {
+        proveedor,
+        img,
         tipo_serv_id,
         tipo_serv_nombre,
         nota_legal,
@@ -88,9 +93,10 @@ export class MyComponent {
 
   getItemsTarjeta(rowTarjeta) {
     const rowAllTarjetas = this.getUnicos(rowTarjeta, "card_id").map(item => {
-      const { card_id, card_nombre, img_card } = item;
+      const { card_id, card_nombre, img_card, tipo_serv_id } = item;
 
       return {
+        tipo_serv_id,
         card_id,
         card_nombre,
         img_card,
@@ -212,6 +218,18 @@ export class MyComponent {
     this.insertAfter(newDetalleClon, sp2);
   }
 
+  getAereo(e) {
+    if (e.tipo_serv_id == 2) {
+      return (
+        <ion-thumbnail slot="end">
+          <img class="fil-bancos" src={e.img}></img>
+        </ion-thumbnail>
+      );
+    } else {
+      return "";
+    }
+  }
+
   render() {
     return (
       <div>
@@ -251,13 +269,15 @@ export class MyComponent {
                       <div class={`list card`}>
                         <br />
                         <div class="item item-divider">
-                          <ion-label>
-                            <h2 class="titulo-principal">
-                              Promociones que aplica a servicios{" "}
-                              {String(y.tipo_serv_nombre).toLowerCase()}
-                            </h2>
-                            <p> {y.des} </p>
-                          </ion-label>
+                          {/* <ion-label> */}
+                          <h2 class="titulo-principal">
+                            Promociones que aplica a servicios{" "}
+                            {String(y.tipo_serv_nombre).toLowerCase()}{" "}
+                          </h2>
+                          {/* </ion-label> */}
+                          <p class="des-servicio">{`${y.des} ${
+                            y.tipo_serv_id == 2 ? y.proveedor : ""
+                          }`}</p>
                         </div>
 
                         {y.row.map(e => (
@@ -266,7 +286,7 @@ export class MyComponent {
                               <ion-thumbnail slot="start">
                                 <img class="fil-bancos" src={e.img_card}></img>
                               </ion-thumbnail>
-
+                              {this.getAereo(y)}
                               <ion-label>
                                 <p>Valido para las tarjetas {e.card_nombre}</p>
                                 <p>Vigente hasta {y.vencimiento}</p>
