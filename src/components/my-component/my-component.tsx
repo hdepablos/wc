@@ -275,9 +275,10 @@ export class MyComponent {
                             {String(y.tipo_serv_nombre).toLowerCase()}{" "}
                           </h2>
                           {/* </ion-label> */}
-                          <p class="des-servicio">{`${y.des} ${
-                            y.tipo_serv_id == 2 ? y.proveedor : ""
-                          }`}</p>
+                          <p class="des-servicio">
+                            {y.des}
+                            <b> {y.tipo_serv_id == 2 ? y.proveedor : ""}</b>
+                          </p>
                         </div>
 
                         {y.row.map(e => (
