@@ -44,6 +44,8 @@ export class MyComponent {
   @State() promociones: IPromociones[] = [];
   @State() bancos: IBancos[] = [];
   @State() promocionesAll: any[] = [];
+  @State() rowAll: any[] = [];
+  @State() selectValue: string;
 
   async getPromociones(): Promise<IPromociones[]> {
     try {
@@ -161,17 +163,21 @@ export class MyComponent {
     return arr.filter(obj => !lookup.has(obj[key]) && lookup.add(obj[key]));
   }
 
-  async cargarPromociones() {
-    const rowAll = await this.getPromociones();
-    this.bancos = this.getUnicos(rowAll, "bco_id").map(item => {
+  async filtrarbancos(row) {
+    this.bancos = this.getUnicos(row, "bco_id").map(item => {
       const { bco_id, bco_nombre, bco_img } = item;
       return {
         bco_id,
         bco_nombre,
         bco_img,
-        bco_row: rowAll.filter(item => item.bco_id == bco_id)
+        bco_row: row.filter(item => item.bco_id == bco_id)
       };
     });
+  }
+
+  async cargarPromociones() {
+    this.rowAll = await this.getPromociones();
+    return await this.filtrarbancos(this.rowAll);
   }
 
   async componentWillLoad() {
@@ -230,14 +236,75 @@ export class MyComponent {
     }
   }
 
+  handleSelect(event) {
+    console.log(event.target.value);
+    this.selectValue = event.target.value;
+
+    // Todos;
+    console.log("All row");
+    console.log(this.rowAll);
+
+    let filRowAll = [];
+    // Filtrar por servicio
+    if (event.target.value > 0) {
+      filRowAll = this.rowAll.filter(e => e.tipo_serv_id == this.selectValue);
+    } else {
+      filRowAll = this.rowAll;
+    }
+    console.log("filtrados por servicio");
+    console.log(filRowAll);
+
+    // Filtrar por banco
+    this.filtrarbancos(filRowAll);
+  }
+
   render() {
     return (
       <div>
         <ion-grid>
           <ion-row>
             <ion-col size-xs="12" size-md="4" size-lg="3" class="lis-bancos">
-              <ion-list-header>
+              {/* <ion-list-header>
                 <ion-title>Entidades financieras</ion-title>
+              </ion-list-header> */}
+
+              <ion-item>
+                <div class="label-filtro">Filtrar por:</div>
+                <select onInput={event => this.handleSelect(event)}>
+                  <option value="0" selected={this.selectValue === "Todos"}>
+                    Todos
+                  </option>
+
+                  <option
+                    value="1"
+                    selected={this.selectValue === "Internacionales"}
+                  >
+                    Internacionales
+                  </option>
+
+                  <option value="2" selected={this.selectValue === "Aéreos"}>
+                    Aéreos
+                  </option>
+
+                  <option
+                    value="3"
+                    selected={this.selectValue === "Exclusivos"}
+                  >
+                    Exclusivos
+                  </option>
+
+                  <option
+                    value="5"
+                    selected={this.selectValue === "Nacionales"}
+                  >
+                    Nacionales
+                  </option>
+                </select>
+              </ion-item>
+
+              <ion-list-header>
+                {/* <ion-title>Entidades financieras</ion-title> */}
+                Entidades Financieras
               </ion-list-header>
 
               {this.bancos.map(item => (

@@ -132,3 +132,7 @@ body {
   margin: 6px 10px 0px 10px;
   text-align: justify;
 }
+
+.label-filtro {
+  padding-right: 10px;
+}
