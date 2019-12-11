@@ -145,7 +145,7 @@ export class MyComponent {
     this.promocionesAll = serviciosNew;
 
     const selectedAll = this.el.shadowRoot.querySelectorAll(".cls-bancos");
-    await selectedAll.forEach(function(item) {
+    await selectedAll.forEach(function (item) {
       item.classList.remove("selected");
       if (item.classList.contains(`item-${idBanco}`)) {
         item.classList.add("selected");
@@ -188,7 +188,7 @@ export class MyComponent {
   componentDidLoad() {
     const idBanco = this.bancos[0].bco_id;
     const selectedAll = this.el.shadowRoot.querySelectorAll(".cls-bancos");
-    selectedAll.forEach(function(item) {
+    selectedAll.forEach(function (item) {
       if (item.classList.contains(`item-${idBanco}`)) {
         item.classList.add("selected");
       }
@@ -237,12 +237,12 @@ export class MyComponent {
   }
 
   handleSelect(event) {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.selectValue = event.target.value;
 
     // Todos;
-    console.log("All row");
-    console.log(this.rowAll);
+    // console.log("All row");
+    // console.log(this.rowAll);
 
     let filRowAll = [];
     // Filtrar por servicio
@@ -251,11 +251,13 @@ export class MyComponent {
     } else {
       filRowAll = this.rowAll;
     }
-    console.log("filtrados por servicio");
-    console.log(filRowAll);
+    // console.log("filtrados por servicio");
+    // console.log(filRowAll);
 
     // Filtrar por banco
     this.filtrarbancos(filRowAll);
+
+    this.clickbanco(this.bancos[0].bco_id);
   }
 
   render() {
@@ -269,10 +271,10 @@ export class MyComponent {
               </ion-list-header> */}
 
               <ion-item>
-                <div class="label-filtro">Filtrar por:</div>
+                <div class="label-filtro">Tipos de promociones:</div>
                 <select onInput={event => this.handleSelect(event)}>
                   <option value="0" selected={this.selectValue === "Todos"}>
-                    Todos
+                    Todas
                   </option>
 
                   <option
@@ -302,10 +304,9 @@ export class MyComponent {
                 </select>
               </ion-item>
 
-              <ion-list-header>
-                {/* <ion-title>Entidades financieras</ion-title> */}
+              {/* <ion-list-header>
                 Entidades Financieras
-              </ion-list-header>
+              </ion-list-header> */}
 
               {this.bancos.map(item => (
                 <ion-item
@@ -357,7 +358,7 @@ export class MyComponent {
                               {this.getAereo(y)}
                               <ion-label>
                                 <p>Valido para las tarjetas {e.card_nombre}</p>
-                                <p>Vigente hasta {y.vencimiento}</p>
+                                {/* <p>Vigente hasta {y.vencimiento}</p> */}
                               </ion-label>
                             </ion-item>
 
@@ -387,7 +388,7 @@ export class MyComponent {
                         ))}
 
                         <div class="item item-body nota-legal">
-                          <p>{y.nota_legal}</p>
+                          <p>VIGENTE HASTA {y.vencimiento}, {y.nota_legal}</p>
                         </div>
                         <hr class="sep-tip-servicio" />
                       </div>
