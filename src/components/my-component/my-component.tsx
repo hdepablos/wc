@@ -225,7 +225,8 @@ export class MyComponent {
   }
 
   getAereo(e) {
-    if (e.tipo_serv_id == 2) {
+    // if (e.tipo_serv_id == 2) {
+    if (e.img) {
       return (
         <ion-thumbnail slot="end">
           <img class="fil-bancos" src={e.img}></img>

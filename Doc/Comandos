@@ -1,0 +1,7 @@
+Básicos:
+  npm run dev
+
+Despues de ejecutar el pull en el servidor de producción
+  Ejecutar:
+    npm run build
+
